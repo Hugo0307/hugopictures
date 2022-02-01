@@ -1,6 +1,8 @@
-<hp-photo
-*ngFor="let photo of photos"
-[url]="photo.url"
-[description]="photo.description">
-</hp-photo>
-
+<ol class="list-unstyled row">
+  <li *ngFor="let photo of photos" class="col-4">
+    <hp-photo
+    [url]="photo.url"
+    [description]="photo.description">
+    </hp-photo>
+  </li>
+</ol>
