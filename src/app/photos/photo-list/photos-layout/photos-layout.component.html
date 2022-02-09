@@ -1,9 +1,11 @@
-<ol class="list-unstyled row">
-  <li *ngFor="let photo of photos" class="col-4">
-    <hp-photo
-    [url]="photo.url"
-    [description]="photo.description">
-    </hp-photo>
+<ol class="list-unstyled">
+  <li *ngFor="let cols of rows" class="row">
+    <div *ngFor="let photo of cols" class="col-4">
+      <hp-photo
+      [url]="photo.url"
+      [description]="photo.description">
+      </hp-photo>
+    </div>
   </li>
 </ol>
 

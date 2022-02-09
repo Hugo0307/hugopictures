@@ -13,6 +13,7 @@ import { PhotoService } from '../photo/photo.service';
 export class PhotoListComponent implements OnInit {
 
   photos: Photo[] = [];
+  filter: string = '';
 
   constructor(
     private photoService:PhotoService,
@@ -24,5 +25,9 @@ export class PhotoListComponent implements OnInit {
     this.photoService
     .listFromUser(userName)//busca pelo usuário dinâmicamente
     .subscribe(photos => this.photos = photos);
+  }
+
+  onKeyUp(evento: KeyboardEvent) {
+    this.filter = (<HTMLInputElement>evento.target).value;
   }
 }
