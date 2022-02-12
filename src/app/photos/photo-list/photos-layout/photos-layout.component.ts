@@ -3,7 +3,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Photo } from './../../photo/photo';
 
 @Component({
-  selector: 'ap-photos-layout',
+  selector: 'hp-photos-layout',
   templateUrl: './photos-layout.component.html',
   styleUrls: ['./photos-layout.component.css']
 })
