@@ -11,3 +11,5 @@
 </div>
 
 <hp-photos-layout [photos]="photos | filterByDescription: filter"></hp-photos-layout>
+
+<hp-load-button (click)="load()" [hasMore]="hasMore"></hp-load-button>
