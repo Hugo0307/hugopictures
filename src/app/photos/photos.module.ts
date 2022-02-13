@@ -1,3 +1,5 @@
+import { PhotoFormModule } from './photo-form/photo-form.module';
+import { PhotoModule } from './photo/photo.module';
 import { PhotoListResolver } from './photo-list/photo-list.resolver';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -9,20 +11,16 @@ import { PhotoFormComponent } from './photo-form/photo-form.component';
 import { PhotosLayoutComponent } from './photo-list/photos-layout/photos-layout.component';
 import { FilterByDescription } from './photo-list/filter-by-description.pipe';
 import { LoadButtonComponent } from './photo-list/load-button/load-button.component';
+import { PhotoListModule } from './photo-list/photo-list.module';
 
 
 @NgModule({
-  declarations: [
-    PhotoComponent,
-    PhotoListComponent,
-    PhotoFormComponent,
-    PhotosLayoutComponent,
-    FilterByDescription,
-    LoadButtonComponent
-  ],
   imports: [
+    PhotoModule,
+    PhotoFormModule,
+    PhotoListModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
   ]
 })
 
