@@ -17,14 +17,12 @@ export class PhotoListComponent implements OnInit{
   currentPage: number = 1;
   userName: string = '';
 
-
   constructor(
     private photoService: PhotoService,
     private activedRoute: ActivatedRoute
     ) { }
 
     ngOnInit(): void {
-
       this.userName = this.activedRoute.snapshot.params.userName;
       this.photos = this.activedRoute.snapshot.data['photos'];
 
@@ -35,12 +33,11 @@ export class PhotoListComponent implements OnInit{
       this.photoService.listFromUser(userName)//busca pelo usuário dinâmicamente
         .subscribe(photos => this.photos = photos);*/
     }
-
-    /** Criei este método para resolver o problema de na tag html o target não conseguir obter o value */
-
+    /** Evento que gerencia o funcionamento do botão Load more */
     load() {
       this.photoService.listFromUserPaginated(this.userName, ++this.currentPage) //o pré-incremento é porque o resolver já carrega a primeira página, agora quero a segunda em diante
           .subscribe(photos => {
+            this.filter = '';//caso não tenha mais o que exibir com o filtro ao clicar em Load more, exibirá todas as fotos
             this.photos = this.photos.concat(photos);
             if(!photos.length) this.hasMore = false;
           });

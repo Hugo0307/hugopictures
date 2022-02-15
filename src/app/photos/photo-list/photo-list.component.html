@@ -1,4 +1,4 @@
-<hp-search></hp-search>
+<hp-search (onTyping)="filter = $event" [value]="filter"></hp-search>
 
 <hp-photos-layout [photos]="photos | filterByDescription: filter"></hp-photos-layout>
 
