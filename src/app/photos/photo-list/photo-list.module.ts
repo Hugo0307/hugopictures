@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { DarkenOnHoverModule } from 'src/app/shared/directives/darken-on-hover/darken-on-hover.module';
 
 import { CardModule } from './../../shared/components/card/card.module';
 import { PhotoModule } from './../photo/photo.module';
@@ -20,6 +21,7 @@ import { SearchComponent } from './search/search.component';
   imports: [
     PhotoModule,
     CardModule,
+    DarkenOnHoverModule,
     CommonModule
   ]
 })
