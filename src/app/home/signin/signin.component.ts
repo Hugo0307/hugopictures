@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { PlatformDetectorService } from './../../core/platform-detector/platform-detector.service';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/auth.service';
+import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
   templateUrl: './signin.component.html'
@@ -9,12 +10,13 @@ import { AuthService } from 'src/app/core/auth.service';
 export class SignInComponent implements OnInit {
 
   loginForm!: FormGroup;
+  @ViewChild('userNameInput') userNameInput!: ElementRef<HTMLInputElement>;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
-    ) { }
+    private router: Router,
+    private platformDetectorService: PlatformDetectorService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -34,9 +36,11 @@ export class SignInComponent implements OnInit {
           alert('Welcome!'),
           this.router.navigate(['/user/', `${userName}`])
         },
-        err => {
+        () => {
           alert('User name or password is invalid!'),
           this.loginForm.reset();
+          this.platformDetectorService.isPlatformBrowser() &&
+            this.userNameInput.nativeElement.focus();//o focus vai ser renderizado somente se a aplicação estiver sendo executada no browser
         }
       );
   }
