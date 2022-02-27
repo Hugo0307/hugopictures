@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { TokenService } from './../token/token.service';
 import jwt_decode from 'jwt-decode';
@@ -9,7 +9,8 @@ import { User } from './user';
 @Injectable({ providedIn: 'root' })
 export class UserService implements OnInit {
 
-  private userSubject = new Subject<User>();
+  /** O Behavior Subject vai pegar a informação do usuário e guardar até que alguém utilize a informação */
+  private userSubject = new BehaviorSubject<User>({id:0,name:'',email:''});
 
   constructor(private tokenService: TokenService) { }
 
