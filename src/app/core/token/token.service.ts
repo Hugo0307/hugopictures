@@ -9,11 +9,11 @@ export class TokenService {
     return !!this.getToken();
   }
 
-  getToken() {
-    return window.localStorage.getItem(KEY);
+  getToken(){
+    return window.localStorage.getItem(KEY) as string;
   }
 
-  setToken(token: any) {
+  setToken(token: string) {
     window.localStorage.setItem(KEY, token);
   }
 
