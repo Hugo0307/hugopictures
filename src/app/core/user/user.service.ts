@@ -11,8 +11,10 @@ export class UserService {
 
   /** O Behavior Subject vai pegar a informação do usuário e guardar até que alguém utilize a informação */
   private userSubject = new BehaviorSubject<User>({id:0,name:'',email:''});
+  private userName!: string;
 
-  constructor(private tokenService: TokenService) {
+  constructor(
+    private tokenService: TokenService) {
     this.tokenService.hasToken() &&
       this.decodeAndNotify();
   }
@@ -29,11 +31,20 @@ export class UserService {
   private decodeAndNotify() {
     const token = this.tokenService.getToken();
     const user = jwt_decode(token) as User;
+    this.userName = user.name;
     this.userSubject.next(user);
   }
 
   logout() {
     this.tokenService.removeToken();
     this.userSubject.next({id:0,name:'',email:''});
+  }
+
+  isLogged() {
+    return this.tokenService.hasToken();
+  }
+
+  getUserName() {
+    return this.userName;
   }
 }

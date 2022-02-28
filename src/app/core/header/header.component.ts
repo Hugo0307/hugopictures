@@ -1,8 +1,9 @@
-import { Router } from '@angular/router';
-import { UserService } from './../user/user.service';
-import { Observable } from 'rxjs';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
 import { User } from '../user/user';
+import { UserService } from './../user/user.service';
 
 @Component({
   selector: 'hp-header',
@@ -12,7 +13,7 @@ import { User } from '../user/user';
 
 export class HeaderComponent {
 
-  user$!: Observable<User>;
+  user$: Observable<User>;
 
   constructor(
     private userService: UserService,
