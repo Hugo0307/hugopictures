@@ -13,7 +13,7 @@ import { UserService } from './../user/user.service';
 
 export class HeaderComponent {
 
-  user$: Observable<User>;
+  user$: Observable<User | null>;
 
   constructor(
     private userService: UserService,

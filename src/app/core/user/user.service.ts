@@ -10,7 +10,7 @@ import { User } from './user';
 export class UserService {
 
   /** O Behavior Subject vai pegar a informação do usuário e guardar até que alguém utilize a informação */
-  private userSubject = new BehaviorSubject<User>({id:0,name:'',email:''});
+  private userSubject = new BehaviorSubject<User | null>(null);
   private userName!: string;
 
   constructor(
@@ -37,7 +37,7 @@ export class UserService {
 
   logout() {
     this.tokenService.removeToken();
-    this.userSubject.next({id:0,name:'',email:''});
+    this.userSubject.next(null);
   }
 
   isLogged() {
