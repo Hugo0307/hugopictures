@@ -1,12 +1,12 @@
-<form [formGroup]="singupForm" class="form mt-4">
+<form [formGroup]="signupForm" class="form mt-4">
   <div class="form-group">
       <input formControlName="email" class="form-control" placeholder="email" autofocus>
       <hp-vmessage
-          *ngIf="singupForm.get('email')?.errors?.required"
+          *ngIf="signupForm.get('email')?.errors?.required"
           text="Email is required!">
       </hp-vmessage>
       <hp-vmessage
-          *ngIf="singupForm.get('email')?.errors?.email"
+          *ngIf="signupForm.get('email')?.errors?.email"
           text="Invalid e-mail">
       </hp-vmessage>
   </div>
@@ -14,15 +14,15 @@
   <div class="form-group">
       <input formControlName="fullName" class="form-control" placeholder="full name">
       <hp-vmessage
-          *ngIf="singupForm.get('fullName')?.errors?.required"
+          *ngIf="signupForm.get('fullName')?.errors?.required"
           text="Full name is required!">
       </hp-vmessage>
       <hp-vmessage
-          *ngIf="singupForm.get('fullName')?.errors?.minlength"
+          *ngIf="signupForm.get('fullName')?.errors?.minlength"
           text="Minimum length is 2">
       </hp-vmessage>
       <hp-vmessage
-          *ngIf="singupForm.get('fullName')?.errors?.maxlength"
+          *ngIf="signupForm.get('fullName')?.errors?.maxlength"
           text="Maximum length is 40">
       </hp-vmessage>
   </div>
@@ -30,40 +30,45 @@
   <div class="form-group">
       <input formControlName="userName" class="form-control" placeholder="user name">
       <hp-vmessage
-          *ngIf="singupForm.get('userName')?.errors?.required"
+          *ngIf="signupForm.get('userName')?.errors?.required"
           text="Username is required!">
       </hp-vmessage>
       <hp-vmessage
-          *ngIf="singupForm.get('userName')?.errors?.minlength"
+          *ngIf="signupForm.get('userName')?.errors?.minlength"
           text="Minimum length is 2">
       </hp-vmessage>
       <hp-vmessage
-          *ngIf="singupForm.get('userName')?.errors?.maxlength"
+          *ngIf="signupForm.get('userName')?.errors?.maxlength"
           text="Maximum length is 30">
       </hp-vmessage>
       <hp-vmessage
-          *ngIf="singupForm.get('userName')?.errors?.lowerCase"
+          *ngIf="signupForm.get('userName')?.errors?.lowerCase"
           text="Must be lowercase">
       </hp-vmessage>
+      <hp-vmessage
+          text="Username already taken"
+          *ngIf="signupForm.get('userName')?.errors?.userNameTaken">
+      </hp-vmessage>
+<small *ngIf="signupForm.get('userName')?.valid" class="text-success">User available</small>
   </div>
 
   <div class="form-group">
       <input formControlName="password" type="password" class="form-control" placeholder="password">
       <hp-vmessage
-          *ngIf="singupForm.get('password')?.errors?.required"
+          *ngIf="signupForm.get('password')?.errors?.required"
           text="Password is required!">
       </hp-vmessage>
       <hp-vmessage
-          *ngIf="singupForm.get('password')?.errors?.minlength"
+          *ngIf="signupForm.get('password')?.errors?.minlength"
           text="Minimum length is 8">
       </hp-vmessage>
       <hp-vmessage
-          *ngIf="singupForm.get('password')?.errors?.maxlength"
+          *ngIf="signupForm.get('password')?.errors?.maxlength"
           text="Maximum length is 14">
       </hp-vmessage>
   </div>
 
-  <button class="btn btn-primary btn-block">Register</button>
+  <button [disabled]="signupForm.invalid || signupForm.pending" class="btn btn-primary btn-block">Register</button>
 
   <p>Already a user? <a [routerLink]="['']">Sign In!</a></p>
 </form>

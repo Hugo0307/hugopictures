@@ -2,18 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { lowerCaseValidator } from 'src/app/shared/validators/lower-case.validator';
 
+import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
+
 @Component({
   templateUrl: './signup.component.html'
 })
 export class SignUpComponent implements OnInit{
 
-  singupForm!: FormGroup;
+  signupForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private userNotTakenValidatorService: UserNotTakenValidatorService) { }
 
   ngOnInit(): void {
 
-    this.singupForm = this.formBuilder.group({
+    this.signupForm = this.formBuilder.group({
 
       email: ['', [
         Validators.required,
@@ -24,12 +28,15 @@ export class SignUpComponent implements OnInit{
         Validators.minLength(2),
         Validators.maxLength(40)
       ]],
-      userName: ['', [
-        Validators.required,
-        lowerCaseValidator,
-        Validators.minLength(2),
-        Validators.maxLength(30)
-      ]],
+      userName: ['',
+        [
+          Validators.required,
+          lowerCaseValidator,
+          Validators.minLength(2),
+          Validators.maxLength(30)
+        ],
+        this.userNotTakenValidatorService.checkUserNameTaken()//realiza a validação se o userName escolhido já existe
+      ],
       password: ['', [
         Validators.required,
         Validators.minLength(8),
