@@ -42,7 +42,7 @@
           text="Maximum length is 30">
       </hp-vmessage>
       <hp-vmessage
-          *ngIf="singupForm.get('userName')?.errors?.pattern"
+          *ngIf="singupForm.get('userName')?.errors?.lowerCase"
           text="Must be lowercase">
       </hp-vmessage>
   </div>
